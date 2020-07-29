@@ -28,8 +28,15 @@ gem 'puma', '~> 3.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Run against the latest stable release
+  gem 'rspec-rails', '~> 4.0.1'
 end
-
+group :test do
+  gem 'shoulda-matchers', '~> 4.0'
+  gem 'database_cleaner'
+  gem "factory_bot_rails"
+  gem 'faker'
+end
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
