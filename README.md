@@ -1,5 +1,5 @@
-# README
-
+# CENTINELA
+ <img src="https://github.com/richardrdz/Centinela/blob/master/FullColor_1280x1024_72dpi.png" alt="logo"> 
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
