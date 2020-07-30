@@ -1,0 +1,2 @@
+class TypesReport < ApplicationRecord
+end
