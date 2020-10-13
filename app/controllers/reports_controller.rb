@@ -1,13 +1,26 @@
 class ReportsController < ApplicationController
+  before_action :authorize_by_access_header!
   before_action :set_report, only: [:show, :update, :destroy]
-
   # GET /reports
   def index
     @reports = Report.all
-
     render json: @reports
   end
-
+  # GET /myreports
+  def reportsUser
+    @reports = current_user.reports.all
+    render json: @reports
+  end
+  # GET /reportsbycoordinate
+  def reportsByCoordinate
+    @reports = Report.near([params[:latitude],  params[:longitude]], params[:ratio])
+    render json: @reports
+  end
+  # GET /reportsbytypereport/1
+  def reportsByTypeReport
+    @reports = Report.where(types_report_id: params[:type])
+    render json: @reports
+  end
   # GET /reports/1
   def show
     render json: @report
@@ -15,7 +28,7 @@ class ReportsController < ApplicationController
 
   # POST /reports
   def create
-    @report = Report.new(report_params)
+    @report = current_user.reports.create(report_params)
     if @report.save
       render json: @report, status: :created, location: @report
     else
@@ -40,7 +53,7 @@ class ReportsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_report
-      @report = Report.find(params[:id])
+      @report = current_user.reports.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
