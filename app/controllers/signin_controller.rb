@@ -3,8 +3,7 @@ class SigninController < ApplicationController
   def create
    user = User.find_by!(email: params[:email])
    if user.authenticate(params[:password])
-     payload  = { user_id: user.id,
-                  user_name: user.userName}
+     payload  = {user_name: user.userName}
      session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
      tokens = session.login
      render json: { access: tokens[:access], csrf: tokens[:csrf], payload: payload }

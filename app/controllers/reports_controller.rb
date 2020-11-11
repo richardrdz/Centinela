@@ -16,9 +16,9 @@ class ReportsController < ApplicationController
     @reports = Report.where(created_at: 24.hours.ago..Time.now).near([params[:latitude],  params[:longitude]], params[:ratio])
     render json: @reports
   end
-  # GET /reportsbytypereport/1
+  # GET /reportsbytypereport/1/latitude/longitude/ratio
   def reportsByTypeReport
-    @reports = Report.where(types_report_id: params[:type])
+    @reports = Report.where(types_report_id: params[:type], created_at: 24.hours.ago..Time.now).near([params[:latitude],  params[:longitude]], params[:ratio])
     render json: @reports
   end
   # GET /reports/1
