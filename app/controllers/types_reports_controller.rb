@@ -1,10 +1,9 @@
 class TypesReportsController < ApplicationController
   before_action :set_types_report, only: [:show, :update, :destroy]
-
+  before_action :authorize_by_access_header!
   # GET /types_reports
   def index
     @types_reports = TypesReport.all
-
     render json: @types_reports
   end
 
