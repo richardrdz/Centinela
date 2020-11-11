@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201013042626) do
+ActiveRecord::Schema.define(version: 20201111034451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20201013042626) do
     t.string "image", null: false
     t.float "latitude", null: false
     t.float "longitude", null: false
-    t.boolean "hidden"
     t.bigint "types_report_id"
     t.bigint "user_id"
     t.text "address"
